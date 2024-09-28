@@ -1,12 +1,15 @@
 #include <iostream>
 
+int my_strelen(char arr[]) {
+    int a = 0;
+    for(int i = 0; arr[i] != '\0'; i++) {
+        a++;
+    }
+    return a;
+}
+
 int main() {
    char arr[] = "i love spb";
-   int a = 0;
-   int i = 0;
-   while(arr[i++] != '\0') {
-    a++;
-   }
-   std::cout << a << std::endl;
+   std::cout << my_strelen(arr) << std::endl;
     return 0;
 }
