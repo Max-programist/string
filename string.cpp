@@ -1,6 +1,7 @@
 #include <iostream>
 
-int my_strelen(char arr[]) {
+
+int my_strlen(const char* arr) {
     int a = 0;
     for(int i = 0; arr[i] != '\0'; i++) {
         a++;
@@ -8,9 +9,9 @@ int my_strelen(char arr[]) {
     return a;
 }
 
-int my_strcmp(char str1[], char str2[]) {
-    int len1 = my_strelen(str1);
-    int len2 = my_strelen(str2);
+int my_strcmp(const char str1[],const char str2[]) {
+    int len1 = my_strlen(str1);
+    int len2 = my_strlen(str2);
     if(len1 != len2) {
         return 1;
     } 
@@ -22,21 +23,31 @@ int my_strcmp(char str1[], char str2[]) {
     return 0;
 }
 
-void my_strcpy(char str1[], char str2[]) {
+void my_strcpy(char str1[], const char str2[]) {
     for(int i = 0; str2[i] != '\0'; i++) {
         str1[i] = str2[i]; 
     }
     
 }
 
-void my_strcat(char str1[], char str2[]) {
-    
+
+
+void my_strcat(char* destination, const char* source) {
+  int len = my_strlen(destination);
+
+  for (int i = 0; source[i] != '\0'; i++) {
+    destination[len + i] = source[i];
+  }
+
+  destination[len + my_strlen(source)] = '\0';
+
+  
 }
 
 int main() {
-    char arr[] = "i love spb";
-    char arr2[] = "i love Mowaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-    my_strcpy(arr, arr2);
+    char arr[100] = "i love spb ";
+    char arr2[] = "i love Mowa";
+    my_strcat(arr, arr2);
     std::cout << arr << std::endl;
     return 0;
 }
