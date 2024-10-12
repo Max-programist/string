@@ -30,8 +30,6 @@ void my_strcpy(char str1[], const char str2[]) {
     
 }
 
-
-
 void my_strcat(char* destination, const char* source) {
   int len = my_strlen(destination);
 
@@ -40,14 +38,54 @@ void my_strcat(char* destination, const char* source) {
   }
 
   destination[len + my_strlen(source)] = '\0';
+}
 
-  
+void my_reverso(char* arr) {
+    int len = my_strlen(arr);
+
+    for(int i = 0; i < len / 2; i++) {
+        char tmp = arr[i];
+        arr[i] = arr[len - i - 1];
+        arr[len - i - 1] = tmp;
+    }
+}
+
+int my_palindrom(const char* str) {
+    int len = my_strlen(str);
+    for(int i = 0; i < len / 2; i++) {
+        if(str[i] != str[len - i - 1]) {
+            return 0;
+        } 
+    }
+    return 1;
+
+}
+
+void to_lower(char* arr) {
+    int len = my_strlen(arr);
+
+    for(int i = 0; i < len; i++) {
+        if((arr[i] >= 64) && (arr[i] <= 90)) {
+            arr[i] = arr[i] + 32;
+        }
+    }
+}
+
+void to_upper(char* arr) {
+    int len = my_strlen(arr);
+
+    for(int i = 0; i < len; i++) {
+        if((arr[i] >= 97) && (arr[i] <= 122)) {
+            arr[i] = arr[i] - 32;
+        }
+    }    
 }
 
 int main() {
-    char arr[100] = "i love spb ";
+    char arr[] = "Poop";
     char arr2[] = "i love Mowa";
-    my_strcat(arr, arr2);
+   
+    to_upper(arr);
     std::cout << arr << std::endl;
     return 0;
 }
