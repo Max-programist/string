@@ -1,5 +1,5 @@
 #include <iostream>
-
+void to_upper(char* arr); 
 
 int my_strlen(const char* arr) {
     int a = 0;
@@ -24,10 +24,12 @@ int my_strcmp(const char str1[],const char str2[]) {
 }
 
 void my_strcpy(char str1[], const char str2[]) {
+    int len =  my_strlen(str2);
     for(int i = 0; str2[i] != '\0'; i++) {
-        str1[i] = str2[i]; 
+        str1[i] = str2[i];
+         
     }
-    
+    str1[len] = '\0';
 }
 
 void my_strcat(char* destination, const char* source) {
@@ -52,8 +54,11 @@ void my_reverso(char* arr) {
 
 int my_palindrom(const char* str) {
     int len = my_strlen(str);
+    char arr[len] = {};
+    my_strcpy(arr, str);
+    to_upper(arr);
     for(int i = 0; i < len / 2; i++) {
-        if(str[i] != str[len - i - 1]) {
+        if(arr[i] != arr[len - i - 1]) {
             return 0;
         } 
     }
@@ -71,6 +76,22 @@ void to_lower(char* arr) {
     }
 }
 
+
+
+int main() {
+    char arr[] = "Poop";
+    char arr2[] = "i love Mowa";
+    int len = my_strlen(arr2);
+    char* arr3 = NULL;
+    //my_strcpy(arr3, arr2);
+    arr3 = arr2;
+    arr2[0] = 'a';
+    //arr2[0] = 'B';
+    std::cout << arr3 << std::endl;
+    std::cout << arr2 << std::endl;
+    return 0;
+}
+
 void to_upper(char* arr) {
     int len = my_strlen(arr);
 
@@ -79,13 +100,4 @@ void to_upper(char* arr) {
             arr[i] = arr[i] - 32;
         }
     }    
-}
-
-int main() {
-    char arr[] = "Poop";
-    char arr2[] = "i love Mowa";
-   
-    to_upper(arr);
-    std::cout << arr << std::endl;
-    return 0;
 }
