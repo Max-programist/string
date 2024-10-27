@@ -76,19 +76,33 @@ void to_lower(char* arr) {
     }
 }
 
+void add_null(char* str, int num) {
+    str[num] = '\0';
+}
 
+int my_strstr(const char* str1, const char* str2) { 
+    int len1 = my_strlen(str1);
+    char arr[len1] = {}; 
+    my_strcpy(arr, str1);
+    int len2 = my_strlen(str2);
+    for(int i = 0; i < len1 - len2; i++) {
+        char temp[len2] = {};
+        my_strcpy(temp, (arr + i));
+        temp[len2] = '\0';
+        int check = my_strcmp(temp, str2);
+        if(check == 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 int main() {
-    char arr[] = "Poop";
-    char arr2[] = "i love Mowa";
-    int len = my_strlen(arr2);
-    char* arr3 = NULL;
-    //my_strcpy(arr3, arr2);
-    arr3 = arr2;
-    arr2[0] = 'a';
-    //arr2[0] = 'B';
-    std::cout << arr3 << std::endl;
-    std::cout << arr2 << std::endl;
+       
+    char arr1[] = "koshasgstrjkjkkkdom";
+    char arr2[] = "str";
+    int check = my_strstr(arr1, arr2);
+    std::cout << check << std::endl;
     return 0;
 }
 
