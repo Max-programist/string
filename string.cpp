@@ -1,6 +1,10 @@
 #include <iostream>
 void to_upper(char* arr); 
 
+int is_vowel(char arr);
+
+int is_alpha(char ch); 
+
 int my_strlen(const char* arr) {
     int a = 0;
     for(int i = 0; arr[i] != '\0'; i++) {
@@ -97,18 +101,58 @@ int my_strstr(const char* str1, const char* str2) {
     return 0;
 }
 
+int finding_vowels(const char* arr) {
+    int len = my_strlen(arr);
+    char temp[len] = {};  
+    my_strcpy(temp, arr);
+    to_upper(temp);
+    int num = 0;
+    for(int i = 0; i < len; i++) {//11cat
+        if(is_alpha(temp[i]) == 1) {// 1 0 
+            if(!is_vowel(temp[i])) {// 1
+                num++;//1
+            }
+        }
+        
+
+    }
+
+    return num;
+}
+
+int is_vowel(char arr) {
+    const char vowels[] = {'A', 'E', 'O', 'I', 'U', 'Y', '\0'};
+    if((arr >= 97) && (arr <= 122)) {
+        arr = arr - 32;
+        std:: cout << arr << std::endl;
+    }
+      
+    for(int i = 0; i <  my_strlen(vowels); i++) {
+        if(arr == vowels[i]) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+
+int is_alpha(char ch) {
+
+    if((ch >= 65 && ch <= 90) || (ch  >= 97 && ch <= 122)) {
+        return 1;
+    } 
+    return 0;
+}
+
 int main() {
-       
-    char arr1[] = "koshasgstrjkjkkkdom";
-    char arr2[] = "str";
-    int check = my_strstr(arr1, arr2);
-    std::cout << check << std::endl;
+    const char arr[] = "111cat";
+    char ch = '\'';
+    std::cout << finding_vowels(arr) << std::endl;
     return 0;
 }
 
 void to_upper(char* arr) {
     int len = my_strlen(arr);
-
     for(int i = 0; i < len; i++) {
         if((arr[i] >= 97) && (arr[i] <= 122)) {
             arr[i] = arr[i] - 32;
