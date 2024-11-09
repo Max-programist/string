@@ -143,11 +143,54 @@ int is_alpha(char ch) {
     } 
     return 0;
 }
+//' .0.0i love spb'
+void space(char* str) {
+    int len = my_strlen(str);
+    char temp[len] = {};  
+
+    
+    for(int i = 0; i < len; i++) {
+        if(str[i] == 32) {
+            continue;
+        } 
+        my_strcpy(temp, (str + i));
+        break;
+    }
+
+    for(int i = my_strlen(temp) - 1; i >= 0; i--) {
+        if(temp[i] == 32) {
+            temp[i] = '\0';
+            continue;
+        }
+        break;
+    }
+
+    bool flag = false;// false
+// "i  love spb"        i = 0 1 2 3 ... 6 7
+    for(int i = 0; i <  my_strlen(temp); i++) {
+        
+        if(temp[i] != 32) {
+            flag = false;
+            std:: cout << temp[i];
+            continue;
+        } else if((flag == false) && (temp[i] == 32)){
+            std:: cout << temp[i];
+            flag = true;
+        } 
+            
+        
+    }
+
+    
+
+    
+}
 
 int main() {
-    const char arr[] = "111cat";
+    char arr[] = "                        i                    love             spb                           ";
     char ch = '\'';
-    std::cout << finding_vowels(arr) << std::endl;
+    space(arr);
+    std:: cout << arr;
     return 0;
 }
 
